@@ -2,6 +2,8 @@
 
 **中大网球队比赛报销手册 · PhSeCl**
 
+[![构建状态](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook/actions/workflows/build-handbook.yml/badge.svg)](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook/actions/workflows/build-handbook.yml)
+
 从发票抬头、凭证留存到材料整理与行程说明，一本写给代表学校参赛的队员的报销手册。把费用、票据和实际行程对应起来，让材料准备更清楚，让反复补交更少一些。
 
 ![手册内页预览](docs/preview.png)
@@ -19,6 +21,8 @@
 > 本手册由队员根据实际经历整理。具体费用范围、办理条件和期限，以学校现行规定及经办部门要求为准。
 
 ## 阅读与编译
+
+无需安装 LaTeX 即可取得 PDF：打开 [自动构建页面](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook/actions/workflows/build-handbook.yml)，选择最近一次成功运行，在页面底部的 **Artifacts** 下载 `handbook-pdfs`。压缩包包含手册和两份汇总表示例，保留 14 天；下载构建产物需要登录 GitHub。仓库维护者也可通过 **Run workflow** 重新生成。
 
 手册使用 LaTeX 编写，以 XeLaTeX 排版。编译需要 TeX Live（含 `latexmk`、`ctex` 等宏包）、PowerShell 7 和 [uv](https://docs.astral.sh/uv/)。
 
