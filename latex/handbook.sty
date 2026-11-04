@@ -1,0 +1,97 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{handbook}[2026/11/04 SYSU reimbursement handbook]
+\RequirePackage{fix-cm}
+\RequirePackage{fontspec}
+\setmainfont{Georgia}
+\setsansfont{ResourceHanRoundedCN}[Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]
+\setmonofont{Consolas}
+\setCJKmainfont{SimSun}[BoldFont=ResourceHanRoundedCN-Bold.ttf,BoldFeatures={Path=fonts/}]
+\setCJKsansfont{ResourceHanRoundedCN}[Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]
+\setCJKmonofont{ResourceHanRoundedCN-Regular.ttf}[Path=fonts/]
+\RequirePackage[a4paper,left=19mm,right=19mm,top=19mm,bottom=16mm,headheight=14pt,headsep=10pt]{geometry}
+\RequirePackage{xcolor,graphicx,tabularx,array,booktabs,enumitem,fancyhdr}
+\graphicspath{{../assets/redacted/}{images/}}
+\RequirePackage{colortbl}
+\AddToHook{env/tabularx/before}{\noindent}
+\RequirePackage{needspace}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{listings}
+\RequirePackage[unicode,pdfencoding=auto,bookmarksnumbered=false,hidelinks]{hyperref}
+\hypersetup{pdftitle={SYSU-Reimbursement-Handbook},pdfauthor={PhSeCl},pdfsubject={中大网球队报销手册}}
+\definecolor{BookBlue}{HTML}{004A8F}
+\definecolor{BookPurple}{HTML}{62339A}
+\definecolor{BookInk}{HTML}{25262A}
+\definecolor{BookMuted}{HTML}{68717A}
+\definecolor{NoteGreen}{HTML}{EAF3EE}
+\definecolor{NoteInk}{HTML}{344E45}
+\definecolor{NotePurple}{HTML}{F0EDF7}
+\definecolor{GuidePurple}{HTML}{E5E5F0}
+\definecolor{GuideRule}{HTML}{8D86BA}
+\definecolor{SummaryYellow}{HTML}{FFF7D9}
+\definecolor{SummaryInk}{HTML}{6D5019}
+\definecolor{ReminderYellow}{HTML}{FFFCDD}
+\definecolor{ReminderRed}{HTML}{E52326}
+\definecolor{TitleRed}{HTML}{A2252C}
+\definecolor{TitlePale}{HTML}{FFF6F3}
+\color{BookInk}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+\setlength{\emergencystretch}{1em}
+\linespread{1}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{{\sffamily\bfseries\fontsize{8.25}{11}\selectfont\thepage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{empty}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}}
+\newcommand{\Strong}[1]{{\sffamily\bfseries #1}}
+\providecommand{\strong}[1]{\Strong{#1}}
+\newcommand{\Kicker}[1]{\par{\sffamily\bfseries\color{BookPurple}\fontsize{9}{13}\selectfont\noindent #1\par}\vspace{4pt}}
+\newcommand{\PageHeading}[1]{\par{\sffamily\bfseries\color{BookBlue}\fontsize{21}{28}\selectfont\noindent #1\par}\vspace{7pt}}
+\newcommand{\Subheading}[1]{\par\Needspace{4\baselineskip}\vspace{7pt}{\sffamily\bfseries\color{BookBlue}\fontsize{15}{22}\selectfont\noindent #1\par}\vspace{1pt}}
+\providecommand{\heading}[1]{\Subheading{#1}}
+\newcommand{\SmallHeading}[1]{\par{\sffamily\bfseries\color{BookBlue}\fontsize{11.25}{17}\selectfont\noindent #1\par}\vspace{1pt}}
+\newcommand{\Standfirst}[1]{{\sffamily\color{BookMuted}\fontsize{10.5}{19}\selectfont #1\par}\vspace{4pt}}
+\newcommand{\SmallNote}[1]{\par\vspace{4pt}{\sffamily\color{BookMuted}\fontsize{8.25}{14}\selectfont #1\par}}
+\newcommand{\SourceNote}[1]{\par\vspace{4pt}{\sffamily\color{BookMuted}\fontsize{7.5}{13}\selectfont #1\par}}
+\newcommand{\LessonPage}[4][1]{\clearpage\phantomsection\label{#2}\pdfbookmark[#1]{#4}{bm-#2}\fontsize{10.8}{19}\selectfont\Kicker{#3}\PageHeading{#4}}
+\newcommand{\ChapterOpening}[3]{%
+  \clearpage\phantomsection\label{#1}\pdfbookmark[0]{#2 #3}{bm-#1}%
+  \fontsize{10.8}{19}\selectfont
+  \vspace*{3mm}\noindent
+  \begin{minipage}[b]{.79\linewidth}
+    {\sffamily\bfseries\color{BookBlue}\fontsize{28}{38}\selectfont #3\par}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{.17\linewidth}\raggedleft
+    {\rmfamily\mdseries\color{BookPurple}\fontsize{88}{88}\selectfont #2\par}
+  \end{minipage}\par\vspace{12mm}}
+\tcbset{handbook/.style={enhanced,arc=1.6mm,boxrule=0pt,frame hidden,left=10pt,right=10pt,top=9pt,bottom=9pt,before skip=8pt,after skip=8pt,boxsep=0pt}}
+\newtcolorbox{SideNote}[1][NoteGreen]{handbook,colback=#1,coltext=NoteInk,fontupper=\sffamily\fontsize{9}{16}\selectfont}
+\newtcolorbox{SummaryBox}{handbook,colback=SummaryYellow,coltext=BookInk,fontupper=\sffamily\fontsize{9.5}{16.5}\selectfont}
+\newtcolorbox{ChapterGuideBox}{handbook,colback=GuidePurple,frame hidden=false,colframe=GuideRule,boxrule=.5pt,left=9pt,right=9pt,top=9pt,bottom=10pt,fontupper=\sffamily\fontsize{10}{17}\selectfont}
+\newcommand{\GuideItem}[1]{\par\hangindent=10pt\hangafter=1\noindent\makebox[10pt][l]{\textcolor{GuideRule}{\textbullet}}#1\par}
+\newcommand{\ChapterGuide}[3]{%
+  \begin{ChapterGuideBox}
+  {\bfseries\color{BookBlue}\fontsize{12}{18}\selectfont 章节导读\par}\vspace{4pt}
+  \begingroup\setlength{\tabcolsep}{9pt}\setlength{\arrayrulewidth}{2.5pt}\arrayrulecolor{white}
+  \begin{tabularx}{\linewidth}{@{}Y|Y|Y@{}}
+  \Strong{\textcolor{BookBlue}{前置说明}} & \Strong{\textcolor{BookBlue}{本章主题}} & \Strong{\textcolor{BookBlue}{后续章节}} \\[3pt]
+  #1 & #2 & #3 \\
+  \end{tabularx}\endgroup
+  \end{ChapterGuideBox}}
+\newtcolorbox{ReminderBox}{handbook,colback=ReminderYellow,coltext=BookInk,fontupper=\sffamily\bfseries\fontsize{10}{17}\selectfont}
+\newcommand{\ReminderTitle}[1]{\par{\color{ReminderRed}\noindent\textbullet\enspace #1\par}\vspace{3pt}}
+\newlist{ReminderList}{itemize}{1}
+\setlist[ReminderList]{label=\textcolor{ReminderRed}{\textbullet},leftmargin=14pt,labelsep=6pt,itemsep=4pt,parsep=0pt,topsep=3pt}
+\newtcolorbox{PurchaserBox}{handbook,colback=TitlePale,coltext=TitleRed,frame hidden=false,colframe=TitleRed,boxrule=.6pt,borderline west={1.8pt}{0pt}{TitleRed},left=15pt,right=15pt,top=12pt,bottom=12pt,fontupper=\sffamily\fontsize{10.5}{17}\selectfont}
+\newcommand{\NoteTitle}[1]{\par\noindent\Strong{#1}\par\vspace{2pt}}
+\newcommand{\SummaryTitle}[1]{\par\noindent{\color{SummaryInk}\Strong{#1}}\par\vspace{2pt}}
+\newenvironment{TeachingPair}{\par\vspace{4pt}\noindent\begin{minipage}[t]{\dimexpr\linewidth-49mm\relax}\vspace{0pt}}{\end{minipage}\par\vspace{3pt}}
+\newcommand{\SideColumn}{\end{minipage}\hfill\begin{minipage}[t]{43mm}\vspace{-8pt}}
+\newcommand{\DocCaption}[2]{{\sffamily\fontsize{8.25}{14}\selectfont\color{BookMuted}\textcolor{BookBlue}{\bfseries 图 #1}\quad #2\par}}
+\NewDocumentCommand{\DocumentFigure}{O{\linewidth} O{} m m m}{\par\vspace{7pt}\noindent\begin{minipage}{\linewidth}\centering\tcbox[enhanced,on line,arc=1.6mm,boxrule=.4pt,colframe=BookBlue!15,boxsep=0pt,left=0pt,right=0pt,top=0pt,bottom=0pt,clip upper,#2]{\includegraphics[width=\dimexpr#1-.8pt\relax]{#3}}\par\vspace{5pt}\raggedright\DocCaption{#4}{#5}\end{minipage}\par\vspace{5pt}}
+\newcommand{\BookRef}[1]{\textcolor{BookPurple}{\sffamily\bfseries\pageref{#1}}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlist[itemize]{leftmargin=12pt,itemsep=5pt,parsep=0pt,topsep=5pt}
+\lstdefinestyle{handbook-files}{basicstyle=\ttfamily\fontsize{9}{14}\selectfont,columns=fullflexible,keepspaces=true,breaklines=true,showstringspaces=false,aboveskip=0pt,belowskip=0pt}
+\newtcblisting{FileTree}{handbook,colback=BookBlue!5,listing only,listing options={style=handbook-files}}

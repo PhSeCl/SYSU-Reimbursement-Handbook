@@ -1,0 +1,39 @@
+% !TeX program = xelatex
+\documentclass[UTF8,fontset=none,11pt]{ctexart}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{fontspec,xcolor}
+\usepackage[unicode,hidelinks]{hyperref}
+\setmainfont{Georgia}
+\setCJKmainfont{SimSun}[BoldFont=ResourceHanRoundedCN-Bold.ttf,BoldFeatures={Path=../../fonts/}]
+\setCJKsansfont{ResourceHanRoundedCN}[Path=../../fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]
+\hypersetup{pdftitle={跨校区训练车费报销汇总表及情况说明},pdfauthor={PhSeCl}}
+\pagestyle{empty}
+\pagecolor{white}
+\color{black}
+\setlength{\parindent}{0pt}
+\begin{document}
+\noindent\begin{minipage}[c][\textheight][c]{\linewidth}
+\centering
+\setlength{\parskip}{0pt}
+{\sffamily\bfseries\fontsize{26}{36}\selectfont 个人报销汇总表\par}
+\vspace{10mm}
+{\fontsize{14}{26}\selectfont
+姓名：队员甲\qquad 学号：XXXXXXXX\par
+邮箱：student@example.com\par
+发票张数：5张\par}
+\vspace{7mm}
+{\sffamily\bfseries\fontsize{14}{22}\selectfont 发票金额（元）\par}
+\vspace{5mm}
+{\fontsize{22}{32}\selectfont $40+40+40+40+40$\par}
+\vspace{10mm}
+{\sffamily\bfseries\fontsize{20}{30}\selectfont 总金额：200元\par}
+\vspace{12mm}
+{\sffamily\bfseries\fontsize{16}{24}\selectfont 情况说明\par}
+\vspace{5mm}
+\begin{minipage}{.92\linewidth}
+\fontsize{14}{26}\selectfont
+\setlength{\parindent}{2\ccwd}
+本人本次申请报销三次赴南校园训练的校车费用。前两次均乘坐校车往返，共四程；第三次训练后由南校园直接随队赴赛场，赛后由赛场返回本人所在校区，因此仅申请该次前往南校园的单程校车费。以上五程每程40元，共200元。南校园至赛场及赛场返回所在校区的交通费用归入比赛报销，本次不再申报。
+\par\end{minipage}
+\end{minipage}
+\end{document}

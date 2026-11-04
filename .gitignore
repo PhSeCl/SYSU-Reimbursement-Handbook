@@ -1,0 +1,30 @@
+# Local environments and private material
+.venv/
+__pycache__/
+private/
+.env
+.env.*
+
+# Generated documents and LaTeX intermediates
+tmp/
+output/
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.listing
+*.xdv
+*.nav
+*.snm
+*.vrb
+*.bak
+
+# Editor and operating system files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

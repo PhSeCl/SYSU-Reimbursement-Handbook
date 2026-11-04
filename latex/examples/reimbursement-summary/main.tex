@@ -1,0 +1,31 @@
+% !TeX program = xelatex
+\documentclass[UTF8,fontset=none,11pt]{ctexart}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{fontspec,xcolor}
+\usepackage[unicode,hidelinks]{hyperref}
+\setmainfont{Georgia}
+\setCJKmainfont{SimSun}[BoldFont=ResourceHanRoundedCN-Bold.ttf,BoldFeatures={Path=../../fonts/}]
+\setCJKsansfont{ResourceHanRoundedCN}[Path=../../fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]
+\hypersetup{pdftitle={个人报销汇总表},pdfauthor={PhSeCl}}
+\pagestyle{empty}
+\pagecolor{white}
+\color{black}
+\setlength{\parindent}{0pt}
+\begin{document}
+\noindent\begin{minipage}[c][\textheight][c]{\linewidth}
+\centering
+\setlength{\parskip}{0pt}
+{\sffamily\bfseries\fontsize{26}{36}\selectfont 个人报销汇总表\par}
+\vspace{10mm}
+{\fontsize{14}{26}\selectfont
+姓名：队员甲\qquad 学号：XXXXXXXX\par
+邮箱：student@example.com\par
+发票张数：4张\par}
+\vspace{7mm}
+{\sffamily\bfseries\fontsize{14}{22}\selectfont 发票金额（元）\par}
+\vspace{5mm}
+{\fontsize{22}{32}\selectfont $32+65+89+54$\par}
+\vspace{10mm}
+{\sffamily\bfseries\fontsize{20}{30}\selectfont 总金额：240元\par}
+\end{minipage}
+\end{document}
