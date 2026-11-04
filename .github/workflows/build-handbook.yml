@@ -1,0 +1,97 @@
+name: Build handbook
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'latex/**'
+      - 'assets/redacted/**'
+      - 'scripts/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/build-handbook.yml'
+  pull_request:
+    paths:
+      - 'latex/**'
+      - 'assets/redacted/**'
+      - 'scripts/**'
+      - 'pyproject.toml'
+      - 'uv.lock'
+      - '.github/workflows/build-handbook.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: handbook-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: XeLaTeX on Windows
+    runs-on: windows-2025
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Check system fonts
+        run: |
+          $fontRoot = Join-Path $env:WINDIR 'Fonts'
+          foreach ($font in @('simsun.ttc', 'georgia.ttf', 'consola.ttf')) {
+            if (-not (Test-Path -LiteralPath (Join-Path $fontRoot $font))) {
+              throw "Required system font is missing: $font"
+            }
+            Write-Output "Available system font: $font"
+          }
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+        with:
+          python-version: '3.12'
+          enable-cache: true
+
+      - name: Set up TeX Live
+        uses: r-lib/actions/setup-tinytex@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05 # v2
+        env:
+          TINYTEX_VERSION: '2026.11'
+          TINYTEX_INSTALLER: TinyTeX
+
+      - name: Install LaTeX packages
+        run: |
+          tlmgr update --self
+          if ($LASTEXITCODE -ne 0) { throw 'TeX Live manager update failed' }
+          tlmgr install ctex xecjk fontspec tcolorbox pgf environ trimspaces listings geometry fancyhdr enumitem booktabs needspace hyperref tools colortbl caption varwidth tikzfill pdfcol latexmk
+          if ($LASTEXITCODE -ne 0) { throw 'LaTeX package installation failed' }
+          xelatex --version
+
+      - name: Install locked Python dependencies
+        run: uv sync --locked
+
+      - name: Build and validate PDFs
+        run: ./scripts/build-handbook.ps1
+
+      - name: Upload PDFs
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: handbook-pdfs
+          path: output/pdf/*.pdf
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload build diagnostics
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: handbook-build-logs
+          path: |
+            tmp/**/*.log
+            tmp/**/pdf-audit.json
+          if-no-files-found: ignore
+          retention-days: 7
