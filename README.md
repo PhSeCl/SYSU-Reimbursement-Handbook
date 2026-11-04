@@ -40,4 +40,8 @@ pwsh -NoProfile -File scripts/build-handbook.ps1
 
 ## 许可与致谢
 
-作者原创正文、LaTeX 源码及构建脚本采用 [MIT License](LICENSE)，署名 **PhSeCl**。思源圆体采用 SIL OFL 1.1；票据、平台和系统界面中的第三方内容不在 MIT 授权范围内，详见[第三方说明](THIRD_PARTY.md)。
+© 2026 **PhSeCl**。手册原创正文、`latex/` 中的文档与排版源码（字体除外）、README 及 `docs/` 中的原创展示内容采用 [CC BY-NC-SA 4.0](LICENSE)（知识共享署名—非商业性使用—相同方式共享 4.0 国际许可协议）。
+
+你可以在非商业用途下分享与改编这些内容；请注明作者 **PhSeCl**、[本仓库](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook)和[许可链接](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)，说明是否作出修改，并以相同许可分享改编内容。商业使用需另行取得授权。
+
+`scripts/` 中的构建与校验工具继续采用 [MIT License](scripts/LICENSE)。思源圆体采用 SIL OFL 1.1；票据、平台和系统界面中的第三方内容不在上述授权范围内，详见[第三方说明](THIRD_PARTY.md)。此前已按 MIT 发布的版本，其原有授权继续有效。
