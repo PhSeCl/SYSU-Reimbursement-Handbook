@@ -81,7 +81,10 @@ jobs:
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: handbook-pdfs
-          path: output/pdf/*.pdf
+          path: |
+            output/pdf/SYSU-Reimbursement-Handbook.pdf
+            output/pdf/reimbursement-summary-form.pdf
+            output/pdf/cross-campus-summary-form.pdf
           if-no-files-found: error
           retention-days: 14
 

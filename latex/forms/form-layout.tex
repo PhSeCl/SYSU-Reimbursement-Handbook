@@ -1,0 +1,46 @@
+% Shared layout for the two downloadable, blank AcroForms.
+\documentclass[UTF8,fontset=none,11pt]{ctexart}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{fontspec,xcolor}
+\usepackage[unicode,hidelinks]{hyperref}
+\setmainfont{Georgia}
+\setCJKmainfont{SimSun}[BoldFont=ResourceHanRoundedCN-Bold.ttf,BoldFeatures={Path=../../fonts/}]
+\setCJKsansfont{ResourceHanRoundedCN}[Path=../../fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]
+\definecolor{heading}{HTML}{335EAA}
+\definecolor{rulecolor}{HTML}{A6ACBE}
+\hypersetup{pdftitle={\FormTitle},pdfauthor={PhSeCl}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\newcommand{\Entry}[4]{%
+  \TextField[name=#1,altname={#2},width=#3,height=#4,
+    charsize=12pt,borderwidth=0.5,bordercolor={0.65 0.67 0.75},
+    backgroundcolor={1 1 1},color={0 0 0}]{}%
+}
+\newcommand{\LongEntry}[4]{%
+  \TextField[name=#1,altname={#2},width=#3,height=#4,multiline=true,
+    charsize=12pt,borderwidth=0.5,bordercolor={0.65 0.67 0.75},
+    backgroundcolor={1 1 1},color={0 0 0}]{}%
+}
+\begin{document}
+{\sffamily\bfseries\color{heading}\fontsize{22}{32}\selectfont\FormTitle\par}
+\vspace{12mm}
+\begin{Form}
+姓名：\Entry{applicantName}{姓名}{49mm}{8mm}\hfill
+学号：\Entry{studentId}{学号}{65mm}{8mm}\par
+\vspace{6mm}
+邮箱：\Entry{email}{邮箱}{146mm}{8mm}\par
+\vspace{6mm}
+发票张数：\Entry{invoiceCount}{发票张数}{35mm}{8mm}\quad 张\par
+\vspace{9mm}
+{\sffamily\bfseries\fontsize{14}{22}\selectfont 发票金额（元）\par}
+\vspace{3mm}
+\LongEntry{invoiceAmounts}{发票金额明细（元）}{\dimexpr\linewidth-2pt\relax}{28mm}\par
+\vspace{6mm}
+{\sffamily\bfseries 总金额：}\Entry{totalAmount}{总金额（元）}{65mm}{9mm}\quad 元\par
+\vspace{10mm}
+{\sffamily\bfseries\fontsize{14}{22}\selectfont 情况说明\par}
+\vspace{3mm}
+\LongEntry{explanation}{情况说明}{\dimexpr\linewidth-2pt\relax}{72mm}\par
+\end{Form}
+\end{document}
