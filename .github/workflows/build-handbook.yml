@@ -44,7 +44,7 @@ jobs:
       - name: Check system fonts
         run: |
           $fontRoot = Join-Path $env:WINDIR 'Fonts'
-          foreach ($font in @('simsun.ttc', 'georgia.ttf', 'consola.ttf', 'times.ttf')) {
+          foreach ($font in @('simsun.ttc', 'georgia.ttf', 'calibri.ttf', 'consola.ttf', 'times.ttf')) {
             if (-not (Test-Path -LiteralPath (Join-Path $fontRoot $font))) {
               throw "Required system font is missing: $font"
             }
