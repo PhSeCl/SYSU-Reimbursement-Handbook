@@ -25,7 +25,7 @@
 
 ## 下载与使用
 
-[在线阅读完整手册](SYSU-Reimbursement-Handbook.pdf) · [直接下载手册 PDF](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook/raw/refs/heads/main/SYSU-Reimbursement-Handbook.pdf)
+[下载完整手册 PDF](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook/releases/latest/download/SYSU-Reimbursement-Handbook.pdf)
 
 两份可填写模板可直接下载：
 

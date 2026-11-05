@@ -10,7 +10,6 @@ private/
 tmp/
 output/
 *.pdf
-!/SYSU-Reimbursement-Handbook.pdf
 *.aux
 *.log
 *.out
