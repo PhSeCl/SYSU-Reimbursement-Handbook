@@ -5,6 +5,7 @@
 \setmainfont{Georgia}
 \setsansfont{ResourceHanRoundedCN}[Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]
 \setmonofont{Consolas}
+\newfontfamily\BlankPageFont{Times New Roman}
 \setCJKmainfont{SimSun}[BoldFont=ResourceHanRoundedCN-Bold.ttf,BoldFeatures={Path=fonts/}]
 \setCJKsansfont{ResourceHanRoundedCN}[Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]
 \setCJKmonofont{ResourceHanRoundedCN-Regular.ttf}[Path=fonts/]
@@ -70,13 +71,13 @@
 \newtcolorbox{SummaryBox}{handbook,colback=SummaryYellow,coltext=BookInk,fontupper=\sffamily\fontsize{9.5}{16.5}\selectfont}
 \newtcolorbox{ChapterGuideBox}{handbook,colback=GuidePurple,frame hidden=false,colframe=GuideRule,boxrule=.5pt,left=9pt,right=9pt,top=9pt,bottom=10pt,fontupper=\sffamily\fontsize{10}{17}\selectfont}
 \newcommand{\GuideItem}[1]{\par\hangindent=10pt\hangafter=1\noindent\makebox[10pt][l]{\textcolor{GuideRule}{\textbullet}}#1\par}
-\newcommand{\ChapterGuide}[3]{%
+\newcommand{\ChapterGuide}[4][后续章节]{%
   \begin{ChapterGuideBox}
   {\bfseries\color{BookBlue}\fontsize{12}{18}\selectfont 章节导读\par}\vspace{4pt}
   \begingroup\setlength{\tabcolsep}{9pt}\setlength{\arrayrulewidth}{2.5pt}\arrayrulecolor{white}
   \begin{tabularx}{\linewidth}{@{}Y|Y|Y@{}}
-  \Strong{\textcolor{BookBlue}{前置说明}} & \Strong{\textcolor{BookBlue}{本章主题}} & \Strong{\textcolor{BookBlue}{后续章节}} \\[3pt]
-  #1 & #2 & #3 \\
+  \Strong{\textcolor{BookBlue}{前置说明}} & \Strong{\textcolor{BookBlue}{本章主题}} & \Strong{\textcolor{BookBlue}{#1}} \\[3pt]
+  #2 & #3 & #4 \\
   \end{tabularx}\endgroup
   \end{ChapterGuideBox}}
 \newtcolorbox{ReminderBox}{handbook,colback=ReminderYellow,coltext=BookInk,fontupper=\sffamily\bfseries\fontsize{10}{17}\selectfont}
@@ -91,6 +92,17 @@
 \newcommand{\DocCaption}[2]{{\sffamily\fontsize{8.25}{14}\selectfont\color{BookMuted}\textcolor{BookBlue}{\bfseries 图 #1}\quad #2\par}}
 \NewDocumentCommand{\DocumentFigure}{O{\linewidth} O{} m m m}{\par\vspace{7pt}\noindent\begin{minipage}{\linewidth}\centering\tcbox[enhanced,on line,arc=1.6mm,boxrule=.4pt,colframe=BookBlue!15,boxsep=0pt,left=0pt,right=0pt,top=0pt,bottom=0pt,clip upper,#2]{\includegraphics[width=\dimexpr#1-.8pt\relax]{#3}}\par\vspace{5pt}\raggedright\DocCaption{#4}{#5}\end{minipage}\par\vspace{5pt}}
 \newcommand{\BookRef}[1]{\textcolor{BookPurple}{\sffamily\bfseries\pageref{#1}}}
+\newcommand{\IntentionalBlankPage}{%
+  \clearpage\thispagestyle{empty}\null\vfill
+  {\centering\BlankPageFont\itshape\fontsize{17}{24}\selectfont\color{black}%
+   This page intentionally left blank\par}
+  \vfill\null\clearpage}
+\newcounter{handbookappendix}
+\renewcommand{\thehandbookappendix}{\Alph{handbookappendix}}
+\newcommand{\AppendixOpening}[2]{%
+  \stepcounter{handbookappendix}%
+  \ChapterOpening{#1}{\thehandbookappendix}{Appendix}%
+  \Subheading{#2}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \setlist[itemize]{leftmargin=12pt,itemsep=5pt,parsep=0pt,topsep=5pt}
 \lstdefinestyle{handbook-files}{basicstyle=\ttfamily\fontsize{9}{14}\selectfont,columns=fullflexible,keepspaces=true,breaklines=true,showstringspaces=false,aboveskip=0pt,belowskip=0pt}

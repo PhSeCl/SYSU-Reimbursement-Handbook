@@ -60,7 +60,7 @@ if (ROOT / 'latex/images/cross-campus-summary.pdf').read_bytes() != (training_bu
 training_text = clean(training_pdf.pages[0].extract_text())
 if not all(value in training_text for value in ('40+40+40+40+40', '200元', '5张', '情况说明')):
     raise ValueError('Training summary example fields mismatch')
-for label in ('preface','prologue','evidence-chain','invoices','receipts','payment','itinerary','insurance','regular-competition','summary-example','cross-campus-training'):
+for label in ('preface','prologue','evidence-chain','invoices','receipts','payment','itinerary','insurance','regular-competition','summary-example','cross-campus-training','training-allowance','appendix-a','epilogue'):
     match = re.search(r'\\newlabel\{'+label+r'\}\{\{[^}]*\}\{([^}]+)\}', aux)
     if not match or match[1] not in pdf.page_labels:
         raise ValueError(f'Unresolved reference: {label}')

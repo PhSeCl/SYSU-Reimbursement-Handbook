@@ -15,12 +15,17 @@
 | [序章 · 报销主体与凭证要求](latex/chapters/prologue.tex) | 中山大学开票信息；发票、小票、付款记录、行程单与保单的用途和图例 |
 | [第一章 · 常规比赛报销](latex/chapters/chapter-1.tex) | 费用分类、票据整理、个人报销汇总表、特殊行程说明与提交前核对 |
 | [第二章 · 跨校区训练车费报销](latex/chapters/chapter-2.tex) | 校车发票、费用汇总、单程情况说明与报销进度沟通 |
+| [第三章 · 训练费发放](latex/chapters/chapter-3.tex) | 训练费名单、金额与发放时间 |
+| [附录 · 开源仓库与模板下载](latex/appendices/appendix-a.tex) | 仓库入口与可填写 PDF 模板 |
+| [后记](latex/backmatter/epilogue.tex) | 编写缘起与材料整理的意义 |
 
 书中保留了填写示例；下载包另附**个人报销汇总表及情况说明**、**跨校区训练车费汇总表及情况说明**两份可填写 PDF，包含姓名、学号、邮箱、发票张数、金额明细、总额和情况说明栏。
 
 > 本手册由队员根据实际经历整理。具体费用范围、办理条件和期限，以学校现行规定及经办部门要求为准。
 
 ## 下载与使用
+
+[在线阅读完整手册](SYSU-Reimbursement-Handbook.pdf) · [直接下载手册 PDF](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook/raw/refs/heads/main/SYSU-Reimbursement-Handbook.pdf)
 
 两份可填写模板可直接下载：
 
