@@ -1,4 +1,5 @@
 # Local environments and private material
+AGENTS.md
 .venv/
 __pycache__/
 private/

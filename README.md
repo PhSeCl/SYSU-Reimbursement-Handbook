@@ -20,23 +20,18 @@
 
 > 本手册由队员根据实际经历整理。具体费用范围、办理条件和期限，以学校现行规定及经办部门要求为准。
 
-## 阅读与编译
+## 下载与使用
+
+两份可填写模板可直接下载：
+
+- [个人报销汇总表及情况说明](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook/releases/latest/download/reimbursement-summary-form.pdf)
+- [跨校区训练车费汇总表及情况说明](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook/releases/latest/download/cross-campus-summary-form.pdf)
 
 无需安装 LaTeX 即可取得 PDF：打开 [自动构建页面](https://github.com/PhSeCl/SYSU-Reimbursement-Handbook/actions/workflows/build-handbook.yml)，选择最近一次成功运行，在页面底部的 **Artifacts** 下载 `handbook-pdfs`。压缩包包含手册和两份空白 PDF 表单，保留 14 天；下载构建产物需要登录 GitHub。仓库维护者也可通过 **Run workflow** 重新生成。
 
 表单建议下载后用 Adobe Acrobat Reader 等支持交互表单的阅读器填写，再另存为个人副本。金额明细与总额需自行核对；保存后重新打开并检查打印预览，确认中文和多行说明完整显示。已填写的文件包含个人信息，请通过经办人指定渠道提交。
 
-手册使用 LaTeX 编写，以 XeLaTeX 排版。编译需要 TeX Live（含 `latexmk`、`ctex` 等宏包）、PowerShell 7 和 [uv](https://docs.astral.sh/uv/)。
-
-在仓库根目录运行：
-
-```powershell
-pwsh -NoProfile -File scripts/build-handbook.ps1
-```
-
-生成的手册位于 `output/pdf/SYSU-Reimbursement-Handbook.pdf`，两份可填写表单分别为 `reimbursement-summary-form.pdf`、`cross-campus-summary-form.pdf`，也在同一目录中。表单排版源码位于 [`latex/forms/`](latex/forms/)。
-
-字体采用宋体正文、思源圆体标题，搭配 Georgia 与 Consolas。思源圆体随仓库提供，PDF 表单内嵌完整中文输入字体；宋体、Georgia、Consolas 由本机提供。其他系统需自行安装合法字体，或在 `latex/handbook.sty`、`latex/examples/` 及 `latex/forms/form-layout.tex` 中调整字体设置。
+手册与模板均以 LaTeX 编写，由 GitHub Actions 使用 XeLaTeX 自动构建。正文源码位于 [`latex/chapters/`](latex/chapters/)，模板源码位于 [`latex/forms/`](latex/forms/)。字体采用宋体正文、思源圆体标题；表单内嵌完整中文输入字体。
 
 ## 反馈与修订
 
