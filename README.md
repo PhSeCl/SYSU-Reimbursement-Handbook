@@ -36,7 +36,7 @@
 
 表单建议下载后用 Adobe Acrobat Reader 等支持交互表单的阅读器填写，再另存为个人副本。金额明细与总额需自行核对；保存后重新打开并检查打印预览，确认中文和多行说明完整显示。已填写的文件包含个人信息，请通过经办人指定渠道提交。
 
-手册与模板均以 LaTeX 编写，由 GitHub Actions 使用 XeLaTeX 自动构建。正文源码位于 [`latex/chapters/`](latex/chapters/)，模板源码位于 [`latex/forms/`](latex/forms/)。字体采用宋体正文、思源圆体标题；表单内嵌完整中文输入字体。
+手册与模板均以 LaTeX 编写，由 GitHub Actions 使用 XeLaTeX 自动构建。正文源码位于 [`latex/chapters/`](latex/chapters/)，模板源码位于 [`latex/forms/`](latex/forms/)。手册采用宋体正文、思源圆体标题；表单采用黑白排版，标题与填写内容均为常规宋体，并内嵌中文输入字体。
 
 ## 反馈与修订
 

@@ -58,7 +58,7 @@ if re.search(r'Overfull \\[hv]box|Missing character:|undefined', training_log):
 if (ROOT / 'latex/images/cross-campus-summary.pdf').read_bytes() != (training_build / 'main.pdf').read_bytes():
     raise ValueError('Training summary illustration differs from the compiled example')
 training_text = clean(training_pdf.pages[0].extract_text())
-if not all(value in training_text for value in ('40+40+40+40+40', '200元', '5张', '情况说明')):
+if not all(value in training_text for value in ('40+40+40+40+40', '200元', '5张', '事由', '出差日期', '往返次数', '单程次数', '单程说明', '其他说明')):
     raise ValueError('Training summary example fields mismatch')
 for label in ('preface','prologue','evidence-chain','invoices','receipts','payment','itinerary','insurance','regular-competition','summary-example','cross-campus-training','training-allowance','appendix-a','epilogue'):
     match = re.search(r'\\newlabel\{'+label+r'\}\{\{[^}]*\}\{([^}]+)\}', aux)

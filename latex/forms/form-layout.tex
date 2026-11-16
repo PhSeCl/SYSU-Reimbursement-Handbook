@@ -1,46 +1,76 @@
-% Shared layout for the two downloadable, blank AcroForms.
-\documentclass[UTF8,fontset=none,11pt]{ctexart}
+% Shared monochrome layout for blank forms and handbook examples.
+\documentclass[UTF8,fontset=none,12pt]{ctexart}
 \usepackage[a4paper,margin=25mm]{geometry}
-\usepackage{fontspec,xcolor}
+\usepackage{fontspec}
 \usepackage[unicode,hidelinks]{hyperref}
-\setmainfont{Georgia}
-\setCJKmainfont{SimSun}[BoldFont=ResourceHanRoundedCN-Bold.ttf,BoldFeatures={Path=../../fonts/}]
-\setCJKsansfont{ResourceHanRoundedCN}[Path=../../fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold]
-\definecolor{heading}{HTML}{335EAA}
-\definecolor{rulecolor}{HTML}{A6ACBE}
+\setmainfont{SimSun}
+\setCJKmainfont{SimSun}
 \hypersetup{pdftitle={\FormTitle},pdfauthor={PhSeCl}}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
-\newcommand{\Entry}[4]{%
-  \TextField[name=#1,altname={#2},width=#3,height=#4,
-    charsize=12pt,borderwidth=0.5,bordercolor={0.65 0.67 0.75},
-    backgroundcolor={1 1 1},color={0 0 0}]{}%
+% Lower each 20pt widget so its centered text shares the label's baseline.
+% Optional alignment uses the standard PDF values: 0 = left, 1 = center.
+\newcommand{\Entry}[5][0]{%
+  \ifdefined\FormExample
+    \ifnum#1=1
+      \makebox[#4][c]{\csname Value#2\endcsname}%
+    \else
+      \makebox[#4][l]{\csname Value#2\endcsname}%
+    \fi
+  \else
+    \raisebox{-5pt}{\TextField[name=#2,altname={#3},width=#4,height=#5,align=#1,
+      charsize=12pt,borderwidth=0.5,bordercolor={0 0 0},
+      backgroundcolor={1 1 1},color={0 0 0}]{}%
+    }%
+  \fi
 }
 \newcommand{\LongEntry}[4]{%
-  \TextField[name=#1,altname={#2},width=#3,height=#4,multiline=true,
-    charsize=12pt,borderwidth=0.5,bordercolor={0.65 0.67 0.75},
-    backgroundcolor={1 1 1},color={0 0 0}]{}%
+  \ifdefined\FormExample
+    \parbox[t][#4][t]{#3}{\raggedright\csname Value#1\endcsname}%
+  \else
+    \TextField[name=#1,altname={#2},width=#3,height=#4,multiline=true,
+      charsize=12pt,borderwidth=0.5,bordercolor={0 0 0},
+      backgroundcolor={1 1 1},color={0 0 0}]{}%
+  \fi
+}
+\newcommand{\Block}[3]{%
+  #2\par\vspace{2mm}%
+  \LongEntry{#1}{#2}{\dimexpr\linewidth-2pt\relax}{#3}\par
 }
 \begin{document}
-{\sffamily\bfseries\color{heading}\fontsize{22}{32}\selectfont\FormTitle\par}
+{\centering\fontsize{19}{28}\selectfont\FormTitle\par}
 \vspace{12mm}
 \begin{Form}
-姓名：\Entry{applicantName}{姓名}{49mm}{8mm}\hfill
-学号：\Entry{studentId}{学号}{65mm}{8mm}\par
+姓名：\Entry{applicantName}{姓名}{49mm}{20pt}\hfill
+学号：\Entry{studentId}{学号}{65mm}{20pt}\par
 \vspace{6mm}
-邮箱：\Entry{email}{邮箱}{146mm}{8mm}\par
+邮箱：\Entry{email}{邮箱}{140mm}{20pt}\par
 \vspace{6mm}
-发票张数：\Entry{invoiceCount}{发票张数}{35mm}{8mm}\quad 张\par
-\vspace{9mm}
-{\sffamily\bfseries\fontsize{14}{22}\selectfont 发票金额（元）\par}
-\vspace{3mm}
-\LongEntry{invoiceAmounts}{发票金额明细（元）}{\dimexpr\linewidth-2pt\relax}{28mm}\par
-\vspace{6mm}
-{\sffamily\bfseries 总金额：}\Entry{totalAmount}{总金额（元）}{65mm}{9mm}\quad 元\par
-\vspace{10mm}
-{\sffamily\bfseries\fontsize{14}{22}\selectfont 情况说明\par}
-\vspace{3mm}
-\LongEntry{explanation}{情况说明}{\dimexpr\linewidth-2pt\relax}{72mm}\par
+发票张数：\Entry[1]{invoiceCount}{发票张数}{25mm}{20pt}\quad 张\par
+\vspace{8mm}
+\Block{invoiceAmounts}{发票金额（元）}{22mm}
+\vspace{5mm}
+总金额：\Entry[1]{totalAmount}{总金额（元）}{55mm}{20pt}\quad 元\par
+\vspace{8mm}
+\ifdefined\CrossCampusForm
+  事由：\Entry{purpose}{事由}{140mm}{20pt}\par
+  \vspace{5mm}
+  出差日期：\Entry[1]{travelStartDate}{出差开始日期}{48mm}{20pt}\quad 至\quad
+  \Entry[1]{travelEndDate}{出差结束日期}{48mm}{20pt}\par
+  \vspace{5mm}
+  出发校区：\Entry{originCampus}{出发校区}{\dimexpr10\ccwd+6pt\relax}{20pt}\hfill
+  出差校区：\Entry{destinationCampus}{出差校区}{\dimexpr10\ccwd+6pt\relax}{20pt}\par
+  \vspace{5mm}
+  往返次数：\Entry[1]{roundTripCount}{往返次数}{25mm}{20pt}\quad 次\par
+  \vspace{5mm}
+  单程次数：\Entry[1]{oneWayCount}{单程次数}{25mm}{20pt}\quad 次\par
+  \vspace{6mm}
+  \Block{oneWayExplanation}{单程说明}{25mm}
+  \vspace{5mm}
+  \Block{otherExplanation}{其他说明}{25mm}
+\else
+  \Block{explanation}{情况说明}{72mm}
+\fi
 \end{Form}
 \end{document}
